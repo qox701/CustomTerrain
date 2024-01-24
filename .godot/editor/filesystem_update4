@@ -1,7 +1,6 @@
-res://Demo/main.tscn
-res://addons/customterrain/resources/T_Grid.tres
-res://addons/customterrain/shaders/terrain.gdshader
 res://addons/customterrain/ArrayMeshTest.cs
 res://addons/customterrain/CustomTerrain.cs
 res://addons/customterrain/Plugin.cs
-res://Demo/ArrayMesh_Test.tscn
+res://Demo/main.tscn
+res://addons/customterrain/resources/T_Grid.tres
+res://addons/customterrain/shaders/terrain.gdshader

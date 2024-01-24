@@ -145,7 +145,7 @@ public static class GenerateMeshUtil
     }
 
     public static Vector3 SeamlessDirection(Vector3 CenterPos,
-        Dictionary<Vector3,MeshInstance3D> _meshPosList,float Size)
+        HashSet<Vector3> _meshPosList,float Size)
     {
         float firstOffset = Size *1.5f;
         float secondOffset = Size /2;
@@ -169,7 +169,7 @@ public static class GenerateMeshUtil
         foreach (var offset in offsets)
         {
 
-            if (_meshPosList.ContainsKey(CenterPos + offset))
+            if (_meshPosList.Contains(CenterPos + offset))
             {
                 if(Mathf.Abs(offset.X)>Mathf.Abs(offset.Z))
                     direction+=new Vector3(offset.X>0?1:-1,0,0);

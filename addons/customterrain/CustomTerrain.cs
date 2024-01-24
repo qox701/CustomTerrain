@@ -60,12 +60,14 @@ namespace CustomTerrain;
 		//The chunk tree and Lists for storing chunks
 		private QuadtreeNode quadtree;
 		private Dictionary<Vector3,MeshInstance3D> _nodeMeshList = new ();
-		private Dictionary<Vector3, bool> _nodeListCurrent = new ();//Contains the centerPos of the Meshes ahd InitPos
+		private Dictionary<Vector3, bool> _nodeListCurrent = new ();//Contains the centerPos of the Meshes
+		private HashSet<Vector3> _nodePos = new();
 		
 		
 		
 		public override void _Ready()
 		{
+			_nodePos.Clear();
 			//Remove all children
 			foreach (var child in GetChildren())
 			{
@@ -101,14 +103,15 @@ namespace CustomTerrain;
 		//Subdivide and visualize the chunks
 		public void UpdateChunks()
 		{
+			_nodePos.Clear();
 			//Init the first chunk
 			Aabb bounds=new Aabb(this.Position,new Vector3(QuadtreeSize,Height,QuadtreeSize));
 			quadtree = new QuadtreeNode(bounds, 0, MaxChunkDepth);
 			//Subdivide the chunk
-			quadtree.SubDivide(_focusPoint.ToVector3());
+			quadtree.SubDivide(_focusPoint.ToVector3(),ref _nodePos);
 			
 			_nodeListCurrent.Clear();
-			//_meshInitPosList.Clear();
+			
 			
 			//Visualize the chunk
 			VisualizeQuadtree(quadtree);
@@ -145,10 +148,13 @@ namespace CustomTerrain;
 
 				//Create a mesh instance for the chunk
 				var meshInstance = new MeshInstance3D();
-				//var mesh = GenerateMeshUtil.GenerateArrayMeshOrigin(node.Bounds.Size.X, 8);
+				
+				/*var mesh = GenerateMeshUtil.GenerateArrayMeshRepaired(node.Bounds.Size.X, 8,
+					GenerateMeshUtil.SeamlessDirection(node.CenterPos, _nodeMeshList, node.Bounds.Size.X));*/
+				
 				var mesh = GenerateMeshUtil.GenerateArrayMeshRepaired(node.Bounds.Size.X, 8,
-					GenerateMeshUtil.SeamlessDirection(node.CenterPos, _nodeMeshList, node.Bounds.Size.X));
-				//var mesh = GenerateMeshUtil.GenerateArrayMeshWithSeamless(node.Bounds.Size.X, 8,GenerateMeshUtil.SeamlessDirection());
+					GenerateMeshUtil.SeamlessDirection(node.CenterPos, _nodePos, node.Bounds.Size.X));
+				
 				mesh.CustomAabb = new Aabb(Vector3.Zero, node.Bounds.Size);
 				meshInstance.Mesh = mesh;
 				meshInstance.Position = new Vector3(node.Bounds.Position.X, 0, node.Bounds.Position.Z);
@@ -157,7 +163,7 @@ namespace CustomTerrain;
 				/*var meshInstance3=new MeshInstance3D();
 				var mesh3 = new BoxMesh();
 				meshInstance3.Mesh = mesh3;
-				meshInstance3.Position=node.CenterPos;
+				meshInstance3.Position=node.CenterPos+GenerateMeshUtil.SeamlessDirection(node.CenterPos, _nodePos, node.Bounds.Size.X);
 				this.AddChild(meshInstance3);*/
 
 				this.AddChild(meshInstance);

@@ -11,7 +11,6 @@ namespace CustomTerrain;
         public List<QuadtreeNode> Children{ get;private set;  }
         public int Depth{ get;private set;  }
         public int MaxChunkLevel{ get;private set;  }
-        //public string Identifier{ get;private set;  }
         
         public Vector3 CenterPos => Bounds.GetCenter();
         public Vector3 InitPos => Bounds.Position;
@@ -22,18 +21,9 @@ namespace CustomTerrain;
             Depth = depth;
             MaxChunkLevel = maxChunkLevel;
             Children = new List<QuadtreeNode>();
-            //Identifier = GenerateIdentifier();
-            //Identifier = GenerateIdentifier();
         }
         
-        private string GenerateIdentifier()
-        {
-            // Generate a unique identifier for the chunk based on bounds and depth
-            //return $"{Bounds.GetCenter()}_{Bounds.Size}_{Depth}";
-            return $"{Bounds.GetCenter()}";
-        }
-        
-        public void SubDivide(Vector3 focusPoint)
+        public void SubDivide(Vector3 focusPoint,ref HashSet<Vector3> _nodeCenterPos)
         {
             float halfSize = Bounds.Size.X * 0.5f;
             float quaterSize = Bounds.Size.X * 0.25f;
@@ -60,15 +50,18 @@ namespace CustomTerrain;
                     Aabb childBounds = new Aabb(childCenter, halfExtents);
                     QuadtreeNode childNode = new QuadtreeNode(childBounds, Depth + 1, MaxChunkLevel);
                     Children.Add(childNode);
-                    childNode.SubDivide(focusPoint);
+                    //_nodeCenterPos.Add(childNode.CenterPos);
+                    
+                    childNode.SubDivide(focusPoint,ref _nodeCenterPos);
                 }
                 else
                 {
-                    //Center is outside the minimum detail distance, add chid at this depth
+                    //Center is outside the minimum detail distance, add child at this depth
                     //var childBounds = new Aabb(childCenter - Vector3.One*quaterSize, halfExtents);
                     var childBounds = new Aabb(childCenter , halfExtents2);
                     var childChunk = new QuadtreeNode(childBounds, Depth + 1, MaxChunkLevel);
                     Children.Add(childChunk);
+                    _nodeCenterPos.Add(childChunk.CenterPos);
                 }
             }
         }
