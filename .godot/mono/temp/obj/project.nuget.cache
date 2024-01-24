@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "fakIpSRYPOqNLmS8H/q/rtgk4OIwlT5qV4eMmsRb1CNpJet5lLAqGNROS8tOxlzO0bz3TeIvj3oWfkpFOphQUg==",
+  "success": true,
+  "projectFilePath": "I:\\CustomTerrain\\CustomTerrain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\godot.sourcegenerators\\4.2.0\\godot.sourcegenerators.4.2.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\godotsharp\\4.2.0\\godotsharp.4.2.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\godotsharpeditor\\4.2.0\\godotsharpeditor.4.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

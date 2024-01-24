@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://ci7gauugdoppf"]
+
+[ext_resource type="Script" path="res://addons/customterrain/CustomTerrain.cs" id="1_gkhh5"]
+[ext_resource type="Material" uid="uid://dvh7ee24qllvt" path="res://addons/customterrain/resources/T_Grid.tres" id="2_ryvul"]
+[ext_resource type="Texture2D" uid="uid://b7hl78r4w72uh" path="res://addons/customterrain/textures/HeightMap.png" id="3_e1bhe"]
+[ext_resource type="Shader" path="res://addons/customterrain/shaders/terrain.gdshader" id="4_7tefj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lo6fu"]
+render_priority = 0
+shader = ExtResource("4_7tefj")
+shader_parameter/worldSize = Vector3(1024, 256, 1024)
+shader_parameter/terrainPos = Vector3(0, 0, 0)
+shader_parameter/HeightmapTexture = ExtResource("3_e1bhe")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pwbjf"]
+
+[node name="main" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.435, 0, 229.817)
+
+[node name="CustomTerrain" type="Node3D" parent="." node_paths=PackedStringArray("CameraPoint")]
+script = ExtResource("1_gkhh5")
+CameraPoint = NodePath("../Camera3D")
+QuadtreeSize = 1024.0
+MaxChunkDepth = 4
+_material = ExtResource("2_ryvul")
+Height = 256.0
+HeightMap = ExtResource("3_e1bhe")
+shader = SubResource("ShaderMaterial_lo6fu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.625, 0, 0, 0, 9.625, 0, 0, 0, 9.625, 77, 0, -13.433)
+mesh = SubResource("PlaneMesh_pwbjf")

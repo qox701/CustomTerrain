@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckrrg2oyhal28"]
+
+[ext_resource type="Script" path="res://addons/customterrain/ArrayMeshTest.cs" id="1_yofut"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="ArrayMeshTest" type="Node3D" parent="."]
+script = ExtResource("1_yofut")

@@ -1,0 +1,17 @@
+I:\CustomTerrain\.godot\mono\temp\bin\Debug\CustomTerrain.deps.json
+I:\CustomTerrain\.godot\mono\temp\bin\Debug\CustomTerrain.runtimeconfig.json
+I:\CustomTerrain\.godot\mono\temp\bin\Debug\CustomTerrain.dll
+I:\CustomTerrain\.godot\mono\temp\bin\Debug\CustomTerrain.pdb
+I:\CustomTerrain\.godot\mono\temp\bin\Debug\GodotSharp.dll
+I:\CustomTerrain\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.csproj.AssemblyReference.cache
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.GeneratedMSBuildEditorConfig.editorconfig
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.AssemblyInfoInputs.cache
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.AssemblyInfo.cs
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.csproj.CoreCompileInputs.cache
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.csproj.CopyComplete
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.dll
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\refint\CustomTerrain.dll
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.pdb
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\CustomTerrain.genruntimeconfig.cache
+I:\CustomTerrain\.godot\mono\temp\obj\Debug\ref\CustomTerrain.dll
