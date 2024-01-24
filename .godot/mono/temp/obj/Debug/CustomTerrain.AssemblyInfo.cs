@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CustomTerrain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+caae09321f07d1ee7b79ac4765e2f2f1d79c9c22")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c01bb9e72050164637fdc93562f6feb7cd59bbdf")]
 [assembly: System.Reflection.AssemblyProductAttribute("CustomTerrain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CustomTerrain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

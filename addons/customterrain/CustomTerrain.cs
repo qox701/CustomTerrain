@@ -60,7 +60,7 @@ namespace CustomTerrain;
 		//The chunk tree and Lists for storing chunks
 		private QuadtreeNode quadtree;
 		private Dictionary<Vector3,MeshInstance3D> _nodeMeshList = new ();
-		private Dictionary<Vector3, bool> _nodeListCurrent = new ();//Contains the centerPos of the Meshes
+		//private Dictionary<Vector3, bool> _nodeListCurrent = new ();//Contains the centerPos of the Meshes
 		private HashSet<Vector3> _nodePos = new();
 		
 		
@@ -103,6 +103,13 @@ namespace CustomTerrain;
 		//Subdivide and visualize the chunks
 		public void UpdateChunks()
 		{
+			foreach (var child in GetChildren())
+			{
+				RemoveChild(child);
+				child.QueueFree();
+			}
+			
+			_nodeMeshList.Clear();
 			_nodePos.Clear();
 			//Init the first chunk
 			Aabb bounds=new Aabb(this.Position,new Vector3(QuadtreeSize,Height,QuadtreeSize));
@@ -110,14 +117,14 @@ namespace CustomTerrain;
 			//Subdivide the chunk
 			quadtree.SubDivide(_focusPoint.ToVector3(),ref _nodePos);
 			
-			_nodeListCurrent.Clear();
+			//_nodeListCurrent.Clear();
 			
 			
 			//Visualize the chunk
 			VisualizeQuadtree(quadtree);
 			
 			//Remove chunks that are not visualized
-			List<Vector3> chunksToRemove=new List<Vector3>();
+			/*List<Vector3> chunksToRemove=new List<Vector3>();
 			foreach (var chunkId in _nodeMeshList.Keys)
 			{
 				if(!_nodeListCurrent.ContainsKey(chunkId))
@@ -128,7 +135,7 @@ namespace CustomTerrain;
 			{
 				_nodeMeshList[chunkId].QueueFree();
 				_nodeMeshList.Remove(chunkId);
-			}
+			}*/
 			
 		}
 		
@@ -140,17 +147,13 @@ namespace CustomTerrain;
 			{
 				
 				//Mark the chunk as visualized
-				_nodeListCurrent[node.CenterPos] = true;
-				//_meshInitPosList[node.InitPos] = true;
+				//_nodeListCurrent[node.CenterPos] = true;
 				//if the chunk is already visualized, return
 				if (_nodeMeshList.ContainsKey(node.CenterPos))
 					return;
 
 				//Create a mesh instance for the chunk
 				var meshInstance = new MeshInstance3D();
-				
-				/*var mesh = GenerateMeshUtil.GenerateArrayMeshRepaired(node.Bounds.Size.X, 8,
-					GenerateMeshUtil.SeamlessDirection(node.CenterPos, _nodeMeshList, node.Bounds.Size.X));*/
 				
 				var mesh = GenerateMeshUtil.GenerateArrayMeshRepaired(node.Bounds.Size.X, 8,
 					GenerateMeshUtil.SeamlessDirection(node.CenterPos, _nodePos, node.Bounds.Size.X));

@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lo6fu"]
 render_priority = 0
 shader = ExtResource("4_7tefj")
-shader_parameter/worldSize = Vector3(1024, 256, 1024)
+shader_parameter/worldSize = Vector3(2048, 256, 2048)
 shader_parameter/terrainPos = Vector3(0, 0, 0)
 shader_parameter/HeightmapTexture = ExtResource("3_e1bhe")
 
@@ -17,13 +17,11 @@ shader_parameter/HeightmapTexture = ExtResource("3_e1bhe")
 [node name="main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.189, 6.10352e-05, -182.637)
 
 [node name="CustomTerrain" type="Node3D" parent="." node_paths=PackedStringArray("CameraPoint")]
 script = ExtResource("1_gkhh5")
 CameraPoint = NodePath("../Camera3D")
-QuadtreeSize = 1024.0
-MaxChunkDepth = 3
+QuadtreeSize = 2048.0
 _material = ExtResource("2_ryvul")
 Height = 256.0
 HeightMap = ExtResource("3_e1bhe")

@@ -28,7 +28,8 @@ namespace CustomTerrain;
             float halfSize = Bounds.Size.X * 0.5f;
             float quaterSize = Bounds.Size.X * 0.25f;
             Vector3 halfExtents = new Vector3(halfSize, Bounds.Size.Y, halfSize);
-            Vector3 halfExtents2 = new Vector3(halfSize/2, Bounds.Size.Y, halfSize/2);
+            Vector3 quaterExtents = new Vector3(quaterSize, Bounds.Size.Y, quaterSize);
+            
             Vector3[] childrenPosition = 
             {
                 new Vector3(0, 0, 0),
@@ -57,8 +58,7 @@ namespace CustomTerrain;
                 else
                 {
                     //Center is outside the minimum detail distance, add child at this depth
-                    //var childBounds = new Aabb(childCenter - Vector3.One*quaterSize, halfExtents);
-                    var childBounds = new Aabb(childCenter , halfExtents2);
+                    var childBounds = new Aabb(childCenter , quaterExtents);
                     var childChunk = new QuadtreeNode(childBounds, Depth + 1, MaxChunkLevel);
                     Children.Add(childChunk);
                     _nodeCenterPos.Add(childChunk.CenterPos);
